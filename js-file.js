@@ -47,6 +47,28 @@ class HashMap {
       return false;
     }
   }
+
+  remove(key) {
+    let hashCode = this.hash(key);
+    if (hashCode < 0 || hashCode >= this.bucket.length) {
+      throw new Error("Trying to access index out of bounds");
+    } else if (this.bucket[hashCode] !== undefined) {
+      this.bucket[hashCode].delete(key);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  length() {
+    let count = 0;
+    for (let map of this.bucket) {
+      if (map !== undefined) {
+        count += map.size;
+      }
+    }
+    return count;
+  }
 }
 
 const cat = new HashMap(0.75, 16);
