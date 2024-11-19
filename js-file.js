@@ -69,6 +69,38 @@ class HashMap {
     }
     return count;
   }
+
+  clear() {
+    for (let map of this.bucket) {
+      if (map !== undefined) {
+        map.clear();
+      }
+    }
+  }
+
+  keys() {
+    let list = [];
+    for (let map of this.bucket) {
+      if (map !== undefined) {
+        for (let entry of map.keys()) {
+          list.push(entry);
+        }
+      }
+    }
+    return list;
+  }
+
+  values() {
+    let list = [];
+    for (let map of this.bucket) {
+      if (map !== undefined) {
+        for (let entry of map.values()) {
+          list.push(entry);
+        }
+      }
+    }
+    return list;
+  }
 }
 
 const cat = new HashMap(0.75, 16);
