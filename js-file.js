@@ -18,6 +18,7 @@ class HashMap {
 
   set(key, value) {
     if (this.length() + 1 > this.capacity * this.loadFactor) {
+      //grow the hashmap
       this.capacity *= 2;
       let newHashMap = new HashMap(0.75, 32);
       this.bucket.forEach((node) => {
@@ -29,7 +30,6 @@ class HashMap {
         newHashMap.bucket[hashCode] = new Map(node);
       });
       this.bucket = newHashMap.bucket;
-      console.log(newHashMap);
     }
     let hashCode = this.hash(key);
     if (hashCode < 0 || hashCode >= this.bucket.length) {
